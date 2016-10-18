@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.login{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    background-color: white;
+    z-index: 50;
+}
+.login #room {
+    width: 80vw;
+    height: 20vw;
+    margin: 5vw 10vw;
+    font-size: 50pt;
+    box-sizing: border-box;
+    padding: 2vh;
+    border: 0px;
+    border-bottom: 0.5vh solid blue;
+    text-transform: uppercase;
+}
+.login #name {
+    width: 80vw;
+    height: 20vw;
+    margin: 5vw 10vw;
+    font-size: 46pt;
+    box-sizing: border-box;
+    padding: 2vh;
+    border: 0px;
+    border-bottom: 0.5vh solid blue;
+}
+.login button {
+    width: 40vw;
+    height: 10vh;
+    margin: 5vw 30vw;
+    font-size: 36pt;
+    border: 0px;
+    background-color:blue;
+    color: white;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+}
+.buttons{    
+    position: absolute;
+    top: 30vh;
+    margin-left: 5vw;
+}
+.buttons button{
+    width: 35vw;
+    height: 11vh;
+    border-radius: 22px;
+    display: inline-block;
+    margin: 5vw;
+    border: 0px;
+    background-color: dodgerblue;
+    color: white;
+    box-sizing: border-box;
+    font-size: 20pt;
+}
+.card1Idle{
+    position: absolute;
+    bottom: 10;
+    width: 20vw;
+    left: 4vw;
+}
+.card2Idle{
+    position: absolute;
+    bottom: 10;
+    width: 20vw;
+    left: 28vw;
+}
+.card3Idle{
+    position: absolute;
+    bottom: 10;
+    width: 20vw;
+    left: 52vw;
+}
+.card4Idle{
+    position: absolute;
+    bottom: 10;
+    width: 20vw;
+    left: 76vw;
+}
+.card1Idle img, .card2Idle img, .card3Idle img, .card4Idle img {
+    width: 20vw;
+}

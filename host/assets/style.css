@@ -1,0 +1,15 @@
+h2#roomNumber{
+    text-align: center;
+    width: 78vw;
+    font-size: 20vh;
+}
+button#startGame{
+    font-size: 10vh;
+    height: 18.1vh;
+    width: 38.1vh;
+    border: 3pt solid blue;
+    padding: 1vw;
+    border-radius: 8.1vw;
+    background-color: white;
+    margin-left: calc(50vw - (10.937vw + 19.05vh));
+}
