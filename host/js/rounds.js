@@ -10,6 +10,10 @@ function startRound(){
     } else {
         turn=turn+1;
 //        Let the player know its his turn by updating his 'yourTurn'
+//        Show wich players turn it is
+//        Visual
+        setPlayerActive();
+        showInstructions();
 //        The turn var is the userID
 //        Give his card at the same time
         $.ajax({
@@ -68,22 +72,29 @@ function waitForPlayer(){
                      //Send the data to the mechanics
                     //Located in mechanics.js
                     var answerWas = checkAnswer(splitData[0],splitData[1]);
-                    //
-                    if (answerWas){
-                        console.log('User was right!');
-                        //add visuals and no drinks
-                    } else {
-                        console.log('User was wrong :(');
-                        //add visuals and drinks                        
-                    }   
+                    var newCard = splitData[1].split('_')[round];
+                    //Checks wheter the response is true or false
+                    //add visuals and drinks 
+                    showFeedback(answerWas);
+                    flipCard(newCard);
+                    addScore(answerWas);                       
                     //Choice has to be set back to empty. 
-                    resetChoice();
+                    //Wait for three seconds to let visuals play out
+                    setTimeout(function(){
+                        resetChoice();
+                    }, 3000)
                 }else{
                     waitForPlayer()
                 }
             }
          })
     }, 1000);  
+}
+function addScore(ans){
+    if(ans==false){
+        var curAm = parseInt( $('.playerTurn .drinks p').text() );
+        $('.playerTurn .drinks p').text(curAm+round);
+    }
 }
 function resetChoice(){
     $.ajax({

@@ -6,7 +6,11 @@ $(document).ready(function(){
 //    Startbutton is activated
     clicksStart();
 //    Open a room with the generated number as name
+    
+//    Temporary disabled for testing
     openRoom(roomNumber);
+    
+    
 //    Set up a list with players to check
 //    wether a new player joined
     playerList = [];
@@ -37,6 +41,7 @@ function clicksStart(){
             return false;
         }
         started='true';
+        loginOut();
         
         playerAmount = playerList.length;
         round=1;
@@ -98,6 +103,7 @@ function checkWetherNew(data){
                 updateID(i,roomNumber,val);
                 //Visual
                 //Add the players to the sidebar
+                addPlayerSide(val,i);
             }
         })
     }

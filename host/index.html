@@ -4,14 +4,33 @@
         <link rel="stylesheet" href="assets/style.css">
     </head>
     <body>
-        <div class="login">
-            <h2 id="roomNumber"></h2>
-            <button id="startGame">Start</button>
+        
+        <div class="container">
+            <div class="login">
+                <h2 id="roomNumber"></h2>
+                <button id="startGame">Start</button>
+            </div>
+            
+            <div class="player-cont">
+<!--                Players will be place here-->
+            </div>
+            <div class="instructions" style="display:none;">
+            </div>
+            <div class="feedback">
+            </div>
+            <div class="cards">
+                <div class="cardStack card5"></div>
+                <div class="cardStack card4"></div>
+                <div class="cardStack card3"></div>
+                <div class="cardStack card2"></div>
+                <div class="cardStack card1"></div>
+            </div>
         </div>
     </body>
     <script src="../js/jquery.min.js"></script>
     <script src="js/setup.js"></script>
     <script src="js/rounds.js"></script>
     <script src="js/mechanics.js"></script>
+    <script src="js/visuals.js"></script>
 <!--    <script src="js/visuals.js"></script>-->
 </html>

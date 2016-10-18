@@ -1,9 +1,22 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
 h2#roomNumber{
     text-align: center;
-    width: 78vw;
+    width: calc(100vw - 300px);
     font-size: 20vh;
+    position: absolute;
+    left: 0;
+    margin-top: 70px;
 }
 button#startGame{
+    position: absolute;
+    top: 360px;
     font-size: 10vh;
     height: 18.1vh;
     width: 38.1vh;
@@ -12,4 +25,134 @@ button#startGame{
     border-radius: 8.1vw;
     background-color: white;
     margin-left: calc(50vw - (10.937vw + 19.05vh));
+}
+.player-cont {
+    width: 300px;
+    height: 100vh;
+    position: absolute;
+    right: -2;
+/*    background-color: orange;*/
+}
+.player {
+    width: 100%;
+    height: 68px;
+/*    background-color: cornflowerblue;*/
+    margin-top: 20px;
+    transition: 0.5s ease-in-out;
+    border-radius: 36px 0px 0px 33px;
+    border: 1px solid cornflowerblue;
+    box-sizing: border-box;
+}
+.player h2 {
+    width: 170px;
+    margin: 0px;
+    position: absolute;
+    margin-left: 70px;
+    margin-top: -64px
+}
+img.avatar {
+    width: 60px;
+    margin: 4px;
+    border-radius: 30px;
+}
+.drinks {
+    width: 60px;
+    height: 60px;
+    float: right;
+    margin: 4px;
+    background-image: url(bier.png);
+}
+.drinks p {    
+    position: absolute;
+    margin-top: 23px;
+    width: 55px;
+    text-align: center;
+}
+.playerCards {
+    position: absolute;
+    margin-top: -24px;
+    margin-left: 70px;
+}
+.playerCards img {
+    width: 20px;
+    height: 20px;
+}
+.playerTurn {
+    transform: scale(1.3);
+    margin-left: -45px;
+}
+.instructions {
+    width: calc(100vw - 395px);
+}
+.instructions h3 {
+    width: 100%;
+    text-align: center;
+    margin-top: 90px;
+    font-size: 47pt;
+}
+.feedback {
+    width: calc(100vw - 395px);
+    position: absolute;
+    top: 400px;
+}
+.feedback h3 {
+    text-align: center;
+    z-index: 2;
+    font-size: 80pt;
+    margin: 0;
+}
+.cardStack{
+    width: 125px;
+    height: 180px;
+    position: absolute;
+    left: 40px;
+    background-image: url(../../assets/backs/back0.png);
+    background-size: cover;
+}
+.cardStack.card1{
+    left: 40px;
+    top: calc(100vh - 220px);
+}
+.cardStack.card2{
+    left: 39px;
+    top: calc(100vh - 218px);
+}
+.cardStack.card3{
+    left: 38px;
+    top: calc(100vh - 216px);
+}
+.cardStack.card4{
+    left: 37px;
+    top: calc(100vh - 214px);
+}
+.cardStack.card5{
+    left: 36px;
+    top: calc(100vh - 212px);
+}
+.card {
+    background-image: url(../../assets/backs/back0.png);
+    background-size: cover;
+    position: absolute;
+}
+.card img {
+    width: 100%;
+}
+.newCard {    
+    width: 125px;
+    height: 180px;
+    left: 40px;
+    top: calc(100vh - 220px);
+}
+.activeCard {
+    top: 25vh;
+    width: 250px;
+    height: 361px;
+    transition: 1s ease-in-out;
+    left: calc(50vw - 268px);
+}
+.activeCard img{
+    display: none;
+}
+.flipping {
+    transform: rotateY(90deg);
 }

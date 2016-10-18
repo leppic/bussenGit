@@ -37,8 +37,8 @@ function showCard(cards){
     console.log(cards)
     var cardsArr = cards.split('_');
     var thisCard = cardsArr[round];
-    var thisCard = thisCard.replace(/\s+/g, '');
-    var thisCard = thisCard.replace('z', '-');
+    thisCard = thisCard.replace(/\s+/g, '');
+    thisCard = thisCard.replace('z', '-');
     var cardPlace = $('.container').find('.card'+round+'Idle')
     $(cardPlace).append('<img src ="assets/svg/'+thisCard+'.svg">');
 }
