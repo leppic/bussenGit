@@ -16,6 +16,11 @@ function showInstructions(){
     //Variable instructions have to be added
     //The round var can determine what the text should be
     var instruc = 'Is de kaart hoger of lager?';
+    var name = $('.playerTurn h2').text();
+    if(round==1){instruc = name+', is de kaart rood of zwart?' };
+    if(round==2){instruc = name+', is de kaart hoger of lager dan de vorige kaart?' };
+    if(round==3){instruc = name+', ligt de waarde van de kaart binnen of buiten de vorige twee kaarten?' };
+    if(round==4){instruc = name+', heb je het plaatje van de kaart al wel of nog niet in je hand?' };
     $('.instructions').append('<h3>'+instruc+'</h3>').fadeIn();
     placeCard();
 }
@@ -35,12 +40,20 @@ function showFeedback(ans){
     if (ans){
         feed = 'Correct!'
     }else {
-        feed='Fout! DRINKEN!'
+        feed='Fout! DRINKEN!';
+        setTimeout(function(){
+            $('.drinkContainer').show();
+            $('.feedback h3').remove();
+            setTimeout(function(){
+                $('.drinkContainer').hide();
+            },2000);
+        },2000);
+        
     }
     $('.feedback').append('<h3>'+feed+'</h3>')
     setTimeout(function(){
         $('.feedback h3').remove();
-    },3000)
+    },2000)
 }
 function flipCard(newCard){
     //Remove the instructions

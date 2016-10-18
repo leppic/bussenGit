@@ -79,10 +79,10 @@ function waitForPlayer(){
                     flipCard(newCard);
                     addScore(answerWas);                       
                     //Choice has to be set back to empty. 
-                    //Wait for three seconds to let visuals play out
+                    //Wait for four seconds to let visuals play out
                     setTimeout(function(){
                         resetChoice();
-                    }, 3000)
+                    }, 4000)
                 }else{
                     waitForPlayer()
                 }
