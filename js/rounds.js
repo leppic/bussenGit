@@ -1,6 +1,7 @@
 function startRound(){
     //Check for turn and wait
     round=0;
+    globCards='';
     waitForHost();
 }
 
@@ -17,14 +18,13 @@ function waitForHost(){
                 console.log(data);
                 if(data.split('|')[0]==1){
                     var cards = data.split('|')[1];
+                    globCards = cards;
                     var cardsArr = cards.split('_')                    
                     //Check the amount of cards to determin the round
                     round = (cardsArr.length-1);
                     //Visual
                     //Send the data to the visuals
-                    
-                    //Temporary
-                    showCard(cards);
+                    enterCard(cards);
                     
                     //Show choice buttons
                     //Two vars are the two choices

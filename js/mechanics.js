@@ -12,11 +12,15 @@ function postAnswer(i,answer){
     console.log(answer);
     //Handle answer visualy. The check here is just for the players visuals
     //For now, Show card
-//    showCard();
+    turnCard()
     //The point mechanic is handled by the host
+    //There could be an duplicate here to minimize server requests
     
     //Post choice. After the post the client will start listening again
     postChoice(i);
+    
+    //Check the answer locally and show rigth feedback (visual)
+    choiceFeedback(checkAnswer(i, globCards));
 }
 //Same as other mechanics.js
 function checkAnswer(answer,cards){
@@ -26,6 +30,8 @@ function checkAnswer(answer,cards){
 //    B is Diamond
 //    C is Hearths
 //    D is Spades
+    console.log(answer)
+    console.log(cards)
     
     //Round one guessing the right color
     if(round==1){

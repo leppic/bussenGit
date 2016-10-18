@@ -59,6 +59,7 @@ header {
     position: absolute;
     top: 30vh;
     margin-left: 5vw;
+    z-index: 1;
 }
 .buttons button{
     width: 35vw;
@@ -98,4 +99,36 @@ header {
 }
 .card1Idle img, .card2Idle img, .card3Idle img, .card4Idle img {
     width: 20vw;
+}
+.card {
+    transition: 0.2s ease-in-out;
+    position: absolute;
+    width: 50vw;
+    height: calc(50vw * 1.444);
+    background-image: url(backs/back0.png);
+    background-size: cover;
+    top:20vh;
+    left: 25vw;
+}
+.card img {
+    width: 100%;
+}
+.card.closed {
+    transition: 1s ease-in-out;
+}
+.closed img {
+    display: none;
+}
+.card.closed.outside {
+    top:-50vh;
+}
+.flipping {
+    transform: rotateY(90deg);
+    transition: 0.2s ease-in-out !important;
+}
+.card.inHand {
+    transition: 0.5s ease-in-out;
+    width: 20vw;
+    height: calc(20vw * 1.444);
+    top: calc(100vh - 33.88vw);
 }
