@@ -29,7 +29,8 @@ function startButton(){
                         alert('this room does not exist')
                     }else{
                         hideLogin();
-                        startRound();    
+                        startRound();
+                        changeName(playerName);
                     }
                 }
             });

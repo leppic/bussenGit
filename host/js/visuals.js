@@ -65,6 +65,10 @@ function flipCard(newCard){
     newCard = newCard.replace('z', '-');
     //Place the image of the card (hidden by default)
     $('.card').append('<img src="../assets/svg/'+newCard+'.svg">');
+    //Place a little version of the card inside the players avatar. It will be hidden and shown when the player gets his card
+    //The numbers aren't correct to show, so they have to be converted
+    var correctValue = correctValueNumber(newCard.split('-')[1]);
+    $('.playerTurn .playerCards').append('<div class="playerCardsItem"><img src="assets/mini/mini'+newCard.split('-')[0]+'.png"><p>'+correctValue+'</p></div>')
     //Update the transition so the flipping will be a bit faster
     $('.card').css({transition: '0.4s ease-in-out'});
     //Make the card flip (CSS)
@@ -94,4 +98,24 @@ function sendCardTo(){
             $('.activeCard').remove();
         },400)
     },400);
+}
+//The numbers as used as the SVG names arent completely correct. The SVG set is all numbers and starts at 1. Normal card sets have numbers and letters and start at 2
+function correctValueNumber(number){
+    number = parseInt(number);
+    if(number<10){
+        var newNumber = number+1;
+        return newNumber;
+    }if(number==10){
+        var newNumber = 'J';
+        return newNumber;
+    }if(number==11){
+        var newNumber = 'Q';
+        return newNumber;
+    }if(number==12){
+        var newNumber = 'K';
+        return newNumber;
+    }if(number==13){
+        var newNumber = 'A';
+        return newNumber;
+    }
 }

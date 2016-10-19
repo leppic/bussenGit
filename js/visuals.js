@@ -48,5 +48,8 @@ function choiceFeedback(correct){
     } else {
         console.log(correct)
     }
-    setTimeout(function(){ inHand() },700);  
+    setTimeout(function(){ inHand() },1200);  
+}
+function changeName(name){
+    $('header h2').text(name)
 }
