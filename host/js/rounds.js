@@ -24,7 +24,7 @@ function startRound(){
 //                console.log(data)
                 // Data is the cards. Take one en put the rest back
                 var splitData = data.split('_')
-                var random = randomNum(0, splitData.length);
+                var random = randomNum(0, (splitData.length-1));
                 var singleCard = splitData.splice(random, 1);
                 //The taken card
                 console.log(singleCard[0]);
