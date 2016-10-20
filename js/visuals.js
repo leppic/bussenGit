@@ -53,3 +53,7 @@ function choiceFeedback(correct){
 function changeName(name){
     $('header h2').text(name)
 }
+function changeAvatar(){
+    //Get propper ID from database
+    $('header img').attr('src', 'assets/avatars/av1.png')
+}

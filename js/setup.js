@@ -31,6 +31,7 @@ function startButton(){
                         hideLogin();
                         startRound();
                         changeName(playerName);
+                        changeAvatar();
                     }
                 }
             });
