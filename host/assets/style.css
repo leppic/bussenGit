@@ -56,15 +56,15 @@ button#startGame{
     box-sizing: border-box;
     background-image: url(playerbg.png);
 }
-.player[player-id="1"]{background-color: #f9eb24;}
-.player[player-id="2"]{background-color: #32aa4b;}
-.player[player-id="3"]{background-color: #f9eb24;}
-.player[player-id="4"]{background-color: #fcc01a;}
+.player[player-id="1"]{background-color: #75B843;}
+.player[player-id="2"]{background-color: #62C3D6;}
+.player[player-id="3"]{background-color: #FCC014;}
+.player[player-id="4"]{background-color: #BD9BC9;}
 .player[player-id="5"]{background-color: #e9473d;}
-.player[player-id="6"]{background-color: #20b9d3;}
-.player[player-id="7"]{background-color: #39a5de;}
-.player[player-id="8"]{background-color: #f9eb24;}
-.player[player-id="9"]{background-color: #74b843;}
+.player[player-id="6"]{background-color: #FEEB25;}
+.player[player-id="7"]{background-color: #268138;}
+.player[player-id="8"]{background-color: #3CA5DD;}
+.player[player-id="9"]{background-color: #DD5B9D;}
 .player h2 {
     width: 170px;
     margin: 0px;
