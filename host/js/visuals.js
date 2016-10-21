@@ -99,6 +99,39 @@ function sendCardTo(){
         },400)
     },400);
 }
+function round5Message(){
+    var instruc = 'Tijd voor ronde 5!'
+    var instruc2 = 'Als je de kaart die wordt geopend in je hand hebt mag je hem spelen.</br>Voor iedere kaart die je hebt mag je een shotje uitdelen.';
+    var instruc3 = 'Voor de eerste rij een shotje, voor de tweede rij twee shotjes, enz.';
+    var instruc4 = 'Laten we beginnen!';
+    $('.instructions').append('<h3>'+instruc+'</h3>').fadeIn();
+    setTimeout(function(){
+        $('.instructions').fadeOut(function(){
+            $('.instructions').empty();
+            $('.instructions').append('<h3>'+instruc2+'</h3>').fadeIn();
+            setTimeout(function(){
+                $('.instructions').fadeOut(function(){
+                    $('.instructions').empty();
+                    $('.instructions').append('<h3>'+instruc3+'</h3>').fadeIn();
+                    setTimeout(function(){
+                        $('.instructions').fadeOut(function(){
+                            $('.instructions').empty();
+                            $('.instructions').append('<h3>'+instruc4+'</h3>').fadeIn();
+                            setTimeout(function(){
+                                $('.instructions').fadeOut(function(){
+                                    $('.instructions').empty();
+                                    //Temporary workaround, until the promise feature is figured out
+                                    getFifteenCards()
+                                    return true;
+                                });
+                            },2000)
+                        });
+                    },4000);
+                });
+            },5000);
+        });
+    },2000);
+};
 function placeFifteenCards(fifteenArray){
     //Hide the stack
     $('.cards').fadeOut();
@@ -114,14 +147,14 @@ function placeFifteenCards(fifteenArray){
     });
 };
 function flipFifteenCard(card){
-    $('#'+card).addClass('flipping');
+    $('#r5c'+card).addClass('flipping');
     setTimeout(function(){
         //Wait till the card is half flipped, then flip it back by removing the flipping class. Also make the card-image visable
-        $('#'+card).removeClass('flipping');
+        $('#r5c'+card).removeClass('flipping');
         //Background image has to be removed (code below doens't do it)
-        $('#'+card+' img').css({backgroundImage: ''});
+        $('#r5c'+card+' img').css({backgroundImage: ''});
         //Show image
-        $('#'+card+' img').css({display: 'block'});
+        $('#r5c'+card+' img').css({display: 'block'});
     },400);
 }
 //The numbers as used as the SVG names arent completely correct. The SVG set is all numbers and starts at 1. Normal card sets have numbers and letters and start at 2

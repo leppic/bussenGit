@@ -8,7 +8,14 @@
 //Ends with in de bus
 
 function startRoundFive(){
-    getFifteenCards()
+    //Visual
+    //This doesn't work propperly. There is a 'promise' needed. 
+    //The getFifteenCards() is called inside the round5Message as an temporary workaround
+    if(round5Message()){
+        getFifteenCards()
+    }
+    //TO DO:
+    //Update the players round to let the clients know round 5 has started 
 }
 
 function getFifteenCards(){
@@ -32,7 +39,12 @@ function getFifteenCards(){
             console.log(fifteenArray)
             //Place the fifteen cards on the deck
             //Visual
-            placeFifteenCards(fifteenArray)
+            placeFifteenCards(fifteenArray);
+            //Wait till the cards are placed on the table and flip the first card
+            setTimeout(function(){
+                flipFifteenCard(round5Turn)
+                round5Turn=+1;
+            },6500);
             
             // Splitdata are the rest of the cards
             console.log(splitData)

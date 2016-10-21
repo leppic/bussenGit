@@ -20,6 +20,7 @@ $(document).ready(function(){
     round = 0;
     turn = 0;
     playerAmount = 0;
+    round5Turn = 0;
     
     started='false';
 });
