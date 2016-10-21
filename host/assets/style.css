@@ -193,7 +193,90 @@ img.avatar {
 .flipping {
     transform: rotateY(90deg);
 }
-
+.round5cont{
+    width: calc(100vw - 455px);
+    height: 100vh;
+}
+.round5{
+    width: 85vh;
+    position: relative;
+    margin: auto;
+}
+.round5card{
+    height: calc(85vh / 5);
+    width: calc((85vh / 5)/1.44);
+    position: absolute;
+    background-image: url(../../assets/backs/back0.png);
+    background-size: cover;
+    transition: 0.5s;
+    
+    left: calc((85vh / 5)*2 + 1vw);
+    top: calc(0vh - (85vh / 5));
+}
+.round5card img{
+    height: calc(85vh / 5);
+    display: none;
+}
+#r5c0{
+    top:78vh;
+    left: 1vw;
+}
+#r5c1{
+    top:78vh;
+    left: calc((85vh / 5)*1 + 1vw);
+}
+#r5c2{
+    top:78vh;
+    left: calc((85vh / 5)*2 + 1vw);
+}
+#r5c3{
+    top:78vh;
+    left: calc((85vh / 5)*3 + 1vw);
+}
+#r5c4{
+    top:78vh;
+    left: calc((85vh / 5)*4 + 1vw);
+}
+#r5c5{
+    top:59vh;
+    left:calc((85vh / 5)*0.5 + 1vw);
+}
+#r5c6{
+    top:59vh;
+    left: calc((85vh / 5)*1.5 + 1vw);
+}
+#r5c7{
+    top:59vh;
+    left: calc((85vh / 5)*2.5 + 1vw);
+}
+#r5c8{
+    top:59vh;
+    left: calc((85vh / 5)*3.5 + 1vw);
+}
+#r5c9{
+    top: 40vh;
+    left: calc((85vh / 5)*1 + 1vw);
+}
+#r5c10{
+    top: 40vh;
+    left: calc((85vh / 5)*2 + 1vw);
+}
+#r5c11{
+    top: 40vh;
+    left: calc((85vh / 5)*3 + 1vw);
+}
+#r5c12{
+    top: 21vh;
+    left: calc((85vh / 5)*1.5 + 1vw);
+}
+#r5c13{ 
+    top: 21vh;
+    left: calc((85vh / 5)*2.5 + 1vw);
+}
+#r5c14{
+    top: 1vh;
+    left: calc((85vh / 5)*2 + 1vw);
+}
 
 .drinkContainer {
     display: none;

@@ -99,6 +99,31 @@ function sendCardTo(){
         },400)
     },400);
 }
+function placeFifteenCards(fifteenArray){
+    //Hide the stack
+    $('.cards').fadeOut();
+    //For each item in the array the code's gonna preform an action
+    //In the CSS there is a postion defined for each card based on it's ID wich is name is ('r5'+'c'+i);
+    $.each(fifteenArray,function(i,val){
+        val = val.replace(/\s+/g, '');
+        val = val.replace('z', '-');
+        $('.round5').append('<div class="round5card" id="rc'+i+'"><img src="../assets/svg/'+val+'.svg"></div')
+        setTimeout(function(){
+             $('#rc'+i).attr('id','r5c'+i)
+        },(400*i))
+    });
+};
+function flipFifteenCard(card){
+    $('#'+card).addClass('flipping');
+    setTimeout(function(){
+        //Wait till the card is half flipped, then flip it back by removing the flipping class. Also make the card-image visable
+        $('#'+card).removeClass('flipping');
+        //Background image has to be removed (code below doens't do it)
+        $('#'+card+' img').css({backgroundImage: ''});
+        //Show image
+        $('#'+card+' img').css({display: 'block'});
+    },400);
+}
 //The numbers as used as the SVG names arent completely correct. The SVG set is all numbers and starts at 1. Normal card sets have numbers and letters and start at 2
 function correctValueNumber(number){
     number = parseInt(number);

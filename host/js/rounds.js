@@ -7,6 +7,9 @@ function startRound(){
         console.log('Round: '+round)
         startRound();
         return false
+    } else if (round==5) {
+        startRoundFive();
+        return false;
     } else {
         turn=turn+1;
 //        Let the player know its his turn by updating his 'yourTurn'
