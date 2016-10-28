@@ -178,3 +178,27 @@ header .points {
     height: calc(20vw * 1.444);
     top: calc(100vh - 33.88vw);
 }
+.button5 {
+    position: absolute;
+    top: 30vh;
+    margin-left: 5vw;
+    z-index: 1;
+}
+button#round5{
+    width: 80vw;
+    height: 11vh;
+    border-radius: 22px;
+    display: inline-block;
+    margin: 5vw;
+    border: 0px;
+    background-color: rgb(76, 102, 100);
+    box-shadow: 0px 0px 8px black;
+    color: white;
+    box-sizing: border-box;
+    font-size: 20pt;
+    font-family: 'Fjalla One', sans-serif;
+}
+.inHand.selected {
+    transform: scale(1.15);
+    top: calc(100vh - 39.88vw);
+}

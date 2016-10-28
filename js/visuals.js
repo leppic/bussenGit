@@ -13,9 +13,10 @@ function enterCard(cards){
     var cardsArr = cards.split('_');
     var thisCard = cardsArr[round];
     var thisCard = thisCard.replace(/\s+/g, '');
-    var thisCard = thisCard.replace('z', '-');
+    var thisCardConv = thisCard.replace('z', '-');
     $('.container').append('<div class="card closed outside"></div>');
-    $('.outside').append('<img src ="assets/svg/'+thisCard+'.svg">');
+    $('.outside').append('<img src ="assets/svg/'+thisCardConv+'.svg">');
+    $('.outside').attr('card-id',thisCard);
     setTimeout(function(){ $('.outside').removeClass('outside'); }, 200);  
 }
 function turnCard(){
@@ -37,9 +38,10 @@ function showCard(cards){
     console.log(cards)
     var cardsArr = cards.split('_');
     var thisCard = cardsArr[round];
+    var cardPlace = $('.container').find('.card'+round+'Idle');
     thisCard = thisCard.replace(/\s+/g, '');
+    $(cardPlace).attr('card-id',thisCard);
     thisCard = thisCard.replace('z', '-');
-    var cardPlace = $('.container').find('.card'+round+'Idle')
     $(cardPlace).append('<img src ="assets/svg/'+thisCard+'.svg">');
 }
 function choiceFeedback(correct){

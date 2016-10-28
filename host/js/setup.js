@@ -21,6 +21,7 @@ $(document).ready(function(){
     turn = 0;
     playerAmount = 0;
     round5Turn = 0;
+    round5Amount = 1;
     
     started='false';
 });

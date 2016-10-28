@@ -100,6 +100,8 @@ function sendCardTo(){
     },400);
 }
 function round5Message(){
+    //First remove the playerturn
+    $('.playerTurn').removeClass('playerTurn');
     var instruc = 'Tijd voor ronde 5!'
     var instruc2 = 'Als je de kaart die wordt geopend in je hand hebt mag je hem spelen.</br>Voor iedere kaart die je hebt mag je een shotje uitdelen.';
     var instruc3 = 'Voor de eerste rij een shotje, voor de tweede rij twee shotjes, enz.';
@@ -156,6 +158,53 @@ function flipFifteenCard(card){
         //Show image
         $('#r5c'+card+' img').css({display: 'block'});
     },400);
+}
+//Show on screen if the player was right and what he's supposed to do
+function showFeedback5(ans,i){
+    var playerEle = $("div[player-id='"+i+"']")
+    playerEle.addClass('playerTurn');
+    //Try to get the right text
+    var text = ''
+    if (ans=='0|0'){
+        //No cardsplayed, no shots
+        text = '<p>geen kaarten gespeeld</p><p>Niets uitdelen</p>'
+    } else {
+        //Example: 0|2|Az2_wrong|Cz12  _wrong
+        var ansSplit = ans.split('|');
+        if(ansSplit[0]=='1'){
+            text = '<p>1 shot uitdelen, '+ansSplit[1]+' zelf drinken</p>';
+        }else{
+            text = '<p>'+ansSplit[0]+' shots uitdelen, '+ansSplit[1]+' zelf drinken</p>'
+        }
+        var amountRight = 0;
+        var amountWrong = 0;
+        $.each(ansSplit, function(i, val){
+            if(val.split('_')[1]=='right'){
+                amountRight +=1;
+            }
+            if(val.split('_')[1]=='wrong'){
+                amountWrong +=1;
+            }
+        });
+        if(amountWrong==1){
+            text = '1 kaart fout</p>'+text
+        }else {
+            text = amountWrong+' kaarten fout</p>'+text
+        }
+        if(amountRight==1){
+            text = '<p>1 kaart goed, '+text
+        }else {
+           text = '<p>'+amountRight+' kaarten goed, '+text
+        }
+        playerEle.append('<div class="persFeedback" style="display:none">'+text+'</div>');
+        $('.persFeedback').fadeIn();
+        setTimeout(function(){
+            $('.persFeedback').fadeOut(function(){
+                $(this).remove()
+            });
+            playerEle.removeClass('playerTurn')
+        },3700)
+    }
 }
 //The numbers as used as the SVG names arent completely correct. The SVG set is all numbers and starts at 1. Normal card sets have numbers and letters and start at 2
 function correctValueNumber(number){

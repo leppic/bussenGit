@@ -6,6 +6,7 @@
 //If they match, the player must choose someone to drink
 //Row 1 (5 cards) they can give 1 drink. Row 2 (4 cards) they can give 2 drinks (can be different players)
 //Ends with in de bus
+round5AnswerList = []
 
 function startRoundFive(){
     //Visual
@@ -15,7 +16,43 @@ function startRoundFive(){
         getFifteenCards()
     }
     //TO DO:
-    //Update the players round to let the clients know round 5 has started 
+    //Update the players round to let the clients know round 5 has started (DONE)
+}
+//This works :P
+function waitForPlayer5(IDarray){
+    if (IDarray.length==0){
+        alert('all Players answered');
+        //If the IDarray is empty the loop is ended and the next step should be taken
+        
+        //TO DO
+        //Check the answer and return the feedback to the players (use the result variable in the table)
+        checkAnswers5()
+        return false;
+    }
+    //Check if all players have answerd
+    //If they send nothing, the answer is 5, otherwise 5_Cz5_Dz2 (example)
+    $.each(IDarray, function(i, val){
+        //For each of the items in the array the code checks if the answer is not 0 and then post the answer
+        $.ajax({
+            type: "POST",
+            data: {room:room, turn:val},
+            url: "php/getChoice5.php",
+            success: function(data){
+                console.log(data)
+                if(data.split('|')[0]==5){
+                    IDarray.splice( $.inArray(val,IDarray) ,1 );
+                    alert('player'+val+' answered');
+                    //TO DO
+                    //Add the answer to some kind of array
+                    //The val determines the position in the list
+                    round5AnswerList[val] = data
+                }
+            }
+        })
+    })
+    setTimeout(function(){
+        waitForPlayer5(IDarray);
+    },1000)
 }
 
 function getFifteenCards(){
@@ -42,8 +79,10 @@ function getFifteenCards(){
             placeFifteenCards(fifteenArray);
             //Wait till the cards are placed on the table and flip the first card
             setTimeout(function(){
+                //Let the users know round 5 has started
+                updateTurn(5);
                 flipFifteenCard(round5Turn)
-                round5Turn=+1;
+//                round5Turn=+1;
             },6500);
             
             // Splitdata are the rest of the cards
@@ -55,6 +94,99 @@ function getFifteenCards(){
             
             //Wait for the players to send their answer
             
+        }
+    });
+}
+
+function updateTurn(turnRound){
+    //for each player the updateTurn php is called. This way each player should get a 5 as round and yourTurn
+    console.log(playerAmount)
+    for (var i = 1; i <= playerAmount; i++) { 
+        $.ajax({
+            type: "POST",
+            data: {room:room,userID:i,round:turnRound},
+            url: "php/updateTurn.php",
+            success: function(data){
+                console.log(data)
+                //Get visuals in order and wait for player
+            }
+        });
+    }
+    //Empty the round5 answer list to prevent mixups
+    round5AnswerList = [];
+    //Create an array with all the player ID's
+    var IDarray = [];
+    for (i = 1; i <= playerAmount; i++) { 
+        IDarray.push(i)
+    }
+    waitForPlayer5(IDarray)
+}
+function checkAnswers5(){
+    //Check the number of the playedcard
+    var playedCard = $('#r5c'+round5Turn+' img').attr('src')
+    playedCard = playedCard.split('/')[3]
+    playedCard = playedCard.split('.')[0]
+    var playedCardNumber = playedCard.split('-')[1]
+
+    //Loop through the answer list and check every player
+    //Keep in mind that a each loop starts at 0, but the first player ID is 1. The first hit will be empty.
+    //Also, the total length of the list will be one higher then the total amount of players
+    $.each(round5AnswerList, function(i, val){
+        if(i==0){
+            //Ignore,the first hit is always empty
+        }else if (val=="5"){
+            //Ignore, the player didn't post any cards
+        }else{
+            //The player posted some cards! Will look something like this (5|Dz11|Cz6)
+            var playerCards = val.split('|')
+            //The player has to get some answer back from the server. Which cards where played correctly, which weren't? Do I have to drink? May he give some shots?
+            //I propose: (amounts of shots to give away)+'|'+(amounts of shots to drink)+'|'+cardname+'_'+(right or wrong)+'|'+cardname+'_'+(right or wrong)+'|'+etc...
+            var answerForPlayer = ''
+            var amountToGive = 0;
+            var amountToDrink = 0;
+            var cardsYoN = ''
+            $.each(playerCards, function(j,jal){
+                if(j==0){
+                    //ignore
+                }else{
+                    if(jal.split('z')[1]==playedCardNumber){
+                        //Player is correct and may give a shot away (amount dependand on the round)
+                        amountToGive += round5Amount;
+                        cardsYoN = cardsYoN+'|'+jal+'_right'
+                    }else{
+                        //Player played a wrong card an has to drink himself!
+                        amountToDrink += round5Amount;
+                        cardsYoN = cardsYoN+'|'+jal+'_wrong'
+                        //Visuals
+                        //It should be let known which players are liars!
+                    }
+                }
+            });
+            answerForPlayer = amountToGive+'|'+amountToDrink+cardsYoN;
+            
+            //Send the answer to the database 
+            sendAnsForPlayer(answerForPlayer,i)
+            
+            //Check wether stuff is correct immediately and give feedback
+            setTimeout(function(){
+                //Visual
+                showFeedback5(answerForPlayer,i)
+            },(4000*i))
+            
+        }
+        console.log(i)
+        console.log(val)
+    })
+}
+
+function sendAnsForPlayer(answerForPlayer,i){
+    $.ajax({
+        type: "POST",
+        data: {room:room,userID:i,ans:answerForPlayer},
+        url: "php/sendAnsForPlayer.php",
+        success: function(data){
+            console.log(data)
+            //Get visuals in order and wait for player
         }
     });
 }

@@ -277,6 +277,20 @@ img.avatar {
     top: 1vh;
     left: calc((85vh / 5)*2 + 1vw);
 }
+.persFeedback {
+    width: 200px;
+    height: 68px;
+    position: absolute;
+    background: #ddeaea;
+    margin-left: -255px;
+    margin-top: -54px;
+    border-radius: 34px 10px 60px 34px;
+    padding: 0px 30px;
+    transform: scale(0.9);
+}
+.persFeedback p{
+    margin: 10px 0px;
+}
 
 .drinkContainer {
     display: none;

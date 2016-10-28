@@ -47,7 +47,11 @@ function waitForHost(){
                         ch2 = 'Nog niet'
                     }
                     showChoices(ch1,ch2)
-                }else{
+                }else if(data.split('|')[0]==5){
+                    setup5();
+                }else if(data.split('|')[0]==6){
+                    alert('Round 6 started')
+                }else {
                     waitForHost()
                 }
             }
