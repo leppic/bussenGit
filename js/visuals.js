@@ -59,3 +59,16 @@ function changeAvatar(){
     //Get propper ID from database
     $('header img').attr('src', 'assets/avatars/av1.png')
 }
+function r5HideOrShow(card,ans){
+    card = card.replace(/\s+/g, '')
+    ans = ans.replace(/\s+/g, '')
+    if(ans=='wrong'){
+        console.log(card+' shown again')
+        $('div[card-id="'+card+'"]').fadeIn(function(){
+            $(this).removeClass('selected')
+        })
+    }else if(ans=='right'){
+        console.log(card+' should be removed')
+        $('div[card-id="'+card+'"]').remove();
+    }
+}

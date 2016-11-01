@@ -7,6 +7,7 @@
 //Row 1 (5 cards) they can give 1 drink. Row 2 (4 cards) they can give 2 drinks (can be different players)
 //Ends with in de bus
 round5AnswerList = []
+round5GiveDrinkList =[]
 
 function startRoundFive(){
     //Visual
@@ -21,11 +22,9 @@ function startRoundFive(){
 //This works :P
 function waitForPlayer5(IDarray){
     if (IDarray.length==0){
-        alert('all Players answered');
+//        alert('all Players answered');
         //If the IDarray is empty the loop is ended and the next step should be taken
         
-        //TO DO
-        //Check the answer and return the feedback to the players (use the result variable in the table)
         checkAnswers5()
         return false;
     }
@@ -41,7 +40,7 @@ function waitForPlayer5(IDarray){
                 console.log(data)
                 if(data.split('|')[0]==5){
                     IDarray.splice( $.inArray(val,IDarray) ,1 );
-                    alert('player'+val+' answered');
+//                    alert('player'+val+' answered');
                     //TO DO
                     //Add the answer to some kind of array
                     //The val determines the position in the list
@@ -149,7 +148,9 @@ function checkAnswers5(){
                 if(j==0){
                     //ignore
                 }else{
-                    if(jal.split('z')[1]==playedCardNumber){
+                    var jalSplit = jal.split('z')[1]
+                    jalSplit=jalSplit.replace(/\s+/g, '')
+                    if(jalSplit==playedCardNumber){
                         //Player is correct and may give a shot away (amount dependand on the round)
                         amountToGive += round5Amount;
                         cardsYoN = cardsYoN+'|'+jal+'_right'
@@ -163,19 +164,24 @@ function checkAnswers5(){
                 }
             });
             answerForPlayer = amountToGive+'|'+amountToDrink+cardsYoN;
-            
-            //Send the answer to the database 
-            sendAnsForPlayer(answerForPlayer,i)
-            
+                        
             //Check wether stuff is correct immediately and give feedback
             setTimeout(function(){
+                //Send the answer to the database 
+                sendAnsForPlayer(answerForPlayer,i)
                 //Visual
                 showFeedback5(answerForPlayer,i)
             },(4000*i))
             
+            //If amountToGive is more then 1, at the player to the list to check for answers
+            if(amountToGive>0){
+                round5GiveDrinkList.push(i)
+            }            
         }
         console.log(i)
         console.log(val)
+        var playerDrinkChoices=[]
+        waitForPlayer5Drinks(playerDrinkChoices)
     })
 }
 
@@ -189,4 +195,29 @@ function sendAnsForPlayer(answerForPlayer,i){
             //Get visuals in order and wait for player
         }
     });
+}
+function waitForPlayer5Drinks(playerDrinkChoices){
+    $.each(round5GiveDrinkList, function(i, val){
+        $.ajax({
+            type: "POST",
+            data: {room:room,userID:val},
+            url: "php/waitForPlayer5Drinks.php",
+            success: function(data){
+                console.log(data);
+                if(data.split('|')[0]!=5){
+                    round5GiveDrinkList.splice( $.inArray(val,round5GiveDrinkList) ,1 );
+                    playerDrinkChoices.push(data)
+                    console.log(round5GiveDrinkList)
+                }
+            }
+        });
+    })
+    if(round5GiveDrinkList.length>0){
+        setTimeout(function(){
+            waitForPlayer5Drinks(playerDrinkChoices)
+        },1000)
+    }else{
+        console.log(playerDrinkChoices)
+        
+    }
 }

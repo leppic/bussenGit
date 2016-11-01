@@ -48,7 +48,22 @@ function waitForHost(){
                     }
                     showChoices(ch1,ch2)
                 }else if(data.split('|')[0]==5){
-                    setup5();
+                    setTimeout(function(){
+                        setup5();
+                    },1000)
+                    //Added for test:
+                    if($('.card').length<=0){
+                        var cardsArr = data.split('|')[1]
+                        cardsArr =  cardsArr.split('_');
+                        $.each(cardsArr,function(i,val){
+                            if(i==0){}else{
+                                val = val.replace(/\s+/g, '');
+                                var valImg = val.replace('z','-');
+                                var snippet= '<div class="card inHand" card-id="'+val+'" style="left:'+((i*24)-20)+'vw"><img src="assets/svg/'+valImg+'.svg"></div>'
+                                $('.container').append(snippet);
+                            }
+                        });
+                    }
                 }else if(data.split('|')[0]==6){
                     alert('Round 6 started')
                 }else {

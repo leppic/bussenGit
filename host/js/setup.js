@@ -120,3 +120,36 @@ function updateID(i,roomNumber,val){
 function randomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function skipStart(){
+    //Skip the first three rounds. Use before pressing start!
+    //The card set the host uses won't be used, so it's possible there will be a duplicates. But that shouldn't be a problem in the code so fk it
+    for (var i = 0; i < playerList.length; i++) { 
+        skipStartFill(i+1)
+    }
+    setTimeout(function(){
+        started='true';
+        loginOut();
+        
+        playerAmount = playerList.length;
+        round=5;
+        startRound();
+    },3000)
+}
+function skipStartFill(i){
+    var cards='';
+    if(i==1){cards='Az0_Az2_Az3_Bz4_Cz5'}
+    if(i==2){cards='Az0_Az6_Az7_Bz8_Cz9'}
+    if(i==3){cards='Az0_Az10_Az11_Bz12_Cz13'}
+    if(i==4){cards='Az0_Az1_Az5_Bz6_Cz7'}
+    if(i==5){cards='Az0_Az8_Az9_Bz10_Cz11'}
+    if(i==6){cards='Az0_Az2_Az3_Bz4_Cz5'}
+    $.ajax({
+        type: "POST",
+        data: {roomNumber:roomNumber, userID:i,cards:cards},
+        url: "php/skipStartFill.php",
+        success: function(data){
+            console.log(data)
+        }
+    });
+}

@@ -6,15 +6,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 $userID = $_POST["userID"];
-$roomNumber = $_POST["room"];
-$ans = $_POST["ans"];
+$roomNumber = $_POST["roomNumber"];
+$cards = $_POST["cards"];
 
 $sql = "
-UPDATE $roomNumber SET result = '$ans', round = '0', yourTurn='2' WHERE UserID = '$userID'
+UPDATE $roomNumber SET round = '5', userCards='$cards' WHERE UserID = '$userID'
 ";
 $result = mysqli_query($conn, $sql);
 if($result){  
-    echo 'succes!';
+    echo $sql;
 } else {
     echo $sql;
 }

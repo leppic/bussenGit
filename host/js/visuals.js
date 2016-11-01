@@ -196,15 +196,15 @@ function showFeedback5(ans,i){
         }else {
            text = '<p>'+amountRight+' kaarten goed, '+text
         }
-        playerEle.append('<div class="persFeedback" style="display:none">'+text+'</div>');
-        $('.persFeedback').fadeIn();
-        setTimeout(function(){
-            $('.persFeedback').fadeOut(function(){
-                $(this).remove()
-            });
-            playerEle.removeClass('playerTurn')
-        },3700)
     }
+    playerEle.append('<div class="persFeedback" style="display:none">'+text+'</div>');
+    $('.persFeedback').fadeIn();
+    setTimeout(function(){
+        $('.persFeedback').fadeOut(function(){
+            $(this).remove()
+        });
+        playerEle.removeClass('playerTurn')
+    },3700)
 }
 //The numbers as used as the SVG names arent completely correct. The SVG set is all numbers and starts at 1. Normal card sets have numbers and letters and start at 2
 function correctValueNumber(number){

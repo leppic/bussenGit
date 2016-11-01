@@ -202,3 +202,66 @@ button#round5{
     transform: scale(1.15);
     top: calc(100vh - 39.88vw);
 }
+.giveDrink{
+    margin-top: 80px;
+}
+.givePlayer {
+    background-color: yellow;
+    margin: 5px 5vw;
+    padding: 0;
+    display: inline-block;
+    width: 90vw;
+    border-radius: 30px;
+    height: 60px;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+.givePLayer h3 {
+    width: calc(90vw - 173px);
+    float: left;
+} 
+.drinkDrinks {
+/*    hidden for now*/
+    display: none;
+}
+.buttonSet {
+    width: 153px;
+    float: right;
+    margin: 0px;
+    text-align: right;
+    background-color: white;
+    border-radius: 30px;
+}
+.buttonSet button {
+    margin: 0;
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    border: 0px;
+    border-radius: 30px;
+    display: inline-block;
+    background-color: #29b190;
+    font-size: 46px;
+    color: white;
+    text-align: center;
+}
+.buttonSet p{
+    display: inline-block;
+    font-size: 27px;
+    margin: 20px 8px;
+    line-height: 0;
+    width: 17px;
+}
+button.send{
+    height: 60px;
+    width: 40vw;
+}
+div[player-id="1"]{background-color: #75B843;}
+div[player-id="2"]{background-color: #62C3D6;}
+div[player-id="3"]{background-color: #FCC014;}
+div[player-id="4"]{background-color: #BD9BC9;}
+div[player-id="5"]{background-color: #e9473d;}
+div[player-id="6"]{background-color: #FEEB25;}
+div[player-id="7"]{background-color: #268138;}
+div[player-id="8"]{background-color: #3CA5DD;}
+div[player-id="9"]{background-color: #DD5B9D;}
