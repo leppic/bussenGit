@@ -255,6 +255,7 @@ button#round5{
 button.send{
     height: 60px;
     width: 40vw;
+    margin-left: calc(50vw - 20vw);
 }
 div[player-id="1"]{background-color: #75B843;}
 div[player-id="2"]{background-color: #62C3D6;}

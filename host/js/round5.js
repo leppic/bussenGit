@@ -10,6 +10,7 @@ round5AnswerList = []
 round5GiveDrinkList =[]
 
 function startRoundFive(){
+    console.log('startRoundFive')
     //Visual
     //This doesn't work propperly. There is a 'promise' needed. 
     //The getFifteenCards() is called inside the round5Message as an temporary workaround
@@ -21,6 +22,7 @@ function startRoundFive(){
 }
 //This works :P
 function waitForPlayer5(IDarray){
+    console.log('waitForPlayer5')
     if (IDarray.length==0){
 //        alert('all Players answered');
         //If the IDarray is empty the loop is ended and the next step should be taken
@@ -37,7 +39,7 @@ function waitForPlayer5(IDarray){
             data: {room:room, turn:val},
             url: "php/getChoice5.php",
             success: function(data){
-                console.log(data)
+//                console.log(data)
                 if(data.split('|')[0]==5){
                     IDarray.splice( $.inArray(val,IDarray) ,1 );
 //                    alert('player'+val+' answered');
@@ -55,6 +57,7 @@ function waitForPlayer5(IDarray){
 }
 
 function getFifteenCards(){
+    console.log('getFifteenCards')
     $.ajax({
         type: "POST",
         data: {room:room},
@@ -72,7 +75,7 @@ function getFifteenCards(){
                 fifteenArray.push(singleCard[0]);
             }
             // fifteenArray are the fifteen cards (in an array)
-            console.log(fifteenArray)
+//            console.log(fifteenArray)
             //Place the fifteen cards on the deck
             //Visual
             placeFifteenCards(fifteenArray);
@@ -80,8 +83,9 @@ function getFifteenCards(){
             setTimeout(function(){
                 //Let the users know round 5 has started
                 updateTurn(5);
+                console.log(round5Turn)
                 flipFifteenCard(round5Turn)
-//                round5Turn=+1;
+//                round5Turn+=1;
             },6500);
             
             // Splitdata are the rest of the cards
@@ -98,15 +102,16 @@ function getFifteenCards(){
 }
 
 function updateTurn(turnRound){
+    console.log('updateTurn')
     //for each player the updateTurn php is called. This way each player should get a 5 as round and yourTurn
-    console.log(playerAmount)
+//    console.log(playerAmount)
     for (var i = 1; i <= playerAmount; i++) { 
         $.ajax({
             type: "POST",
             data: {room:room,userID:i,round:turnRound},
             url: "php/updateTurn.php",
             success: function(data){
-                console.log(data)
+//                console.log(data)
                 //Get visuals in order and wait for player
             }
         });
@@ -121,6 +126,7 @@ function updateTurn(turnRound){
     waitForPlayer5(IDarray)
 }
 function checkAnswers5(){
+    console.log('checkAnswers5')
     //Check the number of the playedcard
     var playedCard = $('#r5c'+round5Turn+' img').attr('src')
     playedCard = playedCard.split('/')[3]
@@ -150,6 +156,8 @@ function checkAnswers5(){
                 }else{
                     var jalSplit = jal.split('z')[1]
                     jalSplit=jalSplit.replace(/\s+/g, '')
+                    console.log(jalSplit)
+                    console.log(playedCardNumber)
                     if(jalSplit==playedCardNumber){
                         //Player is correct and may give a shot away (amount dependand on the round)
                         amountToGive += round5Amount;
@@ -178,46 +186,99 @@ function checkAnswers5(){
                 round5GiveDrinkList.push(i)
             }            
         }
-        console.log(i)
-        console.log(val)
-        var playerDrinkChoices=[]
-        waitForPlayer5Drinks(playerDrinkChoices)
+//        console.log(i)
+//        console.log(val)
     })
+    var playerDrinkChoices=[]
+    waitForPlayer5Drinks(playerDrinkChoices)
 }
 
 function sendAnsForPlayer(answerForPlayer,i){
+    console.log('sendAnsForPlayer')
     $.ajax({
         type: "POST",
         data: {room:room,userID:i,ans:answerForPlayer},
         url: "php/sendAnsForPlayer.php",
         success: function(data){
-            console.log(data)
+//            console.log(data)
             //Get visuals in order and wait for player
         }
     });
 }
 function waitForPlayer5Drinks(playerDrinkChoices){
+    console.log('waitForPlayer5Drinks')
+    if(round5GiveDrinkList.length==0){        
+        setTimeout(function(){
+            showFeedback5Drinks(playerDrinkChoices);
+        },(4000*playerAmount)+2000)
+        return false;
+    }
     $.each(round5GiveDrinkList, function(i, val){
         $.ajax({
             type: "POST",
             data: {room:room,userID:val},
             url: "php/waitForPlayer5Drinks.php",
             success: function(data){
-                console.log(data);
+//                console.log(data);
                 if(data.split('|')[0]!=5){
                     round5GiveDrinkList.splice( $.inArray(val,round5GiveDrinkList) ,1 );
                     playerDrinkChoices.push(data)
-                    console.log(round5GiveDrinkList)
+//                    console.log(round5GiveDrinkList)
                 }
             }
         });
     })
-    if(round5GiveDrinkList.length>0){
-        setTimeout(function(){
-            waitForPlayer5Drinks(playerDrinkChoices)
-        },1000)
+    setTimeout(function(){
+        if(round5GiveDrinkList.length>0){        
+            waitForPlayer5Drinks(playerDrinkChoices)            
+        }else{
+//            console.log(playerDrinkChoices)
+            showFeedback5Drinks(playerDrinkChoices);
+            return false;
+        }
+    },1000)
+}
+function showFeedback5Drinks(playerDrinkChoices){
+    //This code show who should drink how many
+    console.log(playerDrinkChoices)
+    if(playerDrinkChoices.length==0){
+        //nothing
+        cleanupDatabase();
     }else{
-        console.log(playerDrinkChoices)
-        
+        //Visuals
+        //cleanupDatabase() will be called from visuals
     }
+    
+}
+function cleanupDatabase(){
+    console.log('cleanupDatabase')
+    $.each(playerList, function(i,val){
+        $.ajax({
+            type: "POST",
+            data: {room:room,userID:(i+1)},
+            url: "php/cleanupDatabase.php",
+            success: function(data){
+//                console.log('Cleanup for '+(i+1)+' is: succes')
+//                console.log(data)
+                if((i+1)==playerAmount){
+                    updateTurn(5);
+                    round5Turn+=1;
+                    if(round5Turn==5){
+                        round5Amount=2
+                    }
+                    if(round5Turn==9){
+                        round5Amount=3
+                    }
+                    if(round5Turn==12){
+                        round5Amount=4
+                    }
+                    if(round5Turn==14){
+                        round5Amount=5
+                    }
+                    flipFifteenCard(round5Turn)
+//                    console.log('last Cleaned up')
+                }
+            }
+        });
+    });
 }

@@ -206,6 +206,16 @@ function showFeedback5(ans,i){
         playerEle.removeClass('playerTurn')
     },3700)
 }
+function nobodyDrinks(){
+    var feed='Niemand drinkt';
+    $('.feedback').append('<h3>'+feed+'</h3>')
+    setTimeout(function(){
+        
+    },2000)
+}
+function round5drinks(){
+    
+}
 //The numbers as used as the SVG names arent completely correct. The SVG set is all numbers and starts at 1. Normal card sets have numbers and letters and start at 2
 function correctValueNumber(number){
     number = parseInt(number);
