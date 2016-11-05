@@ -126,7 +126,7 @@ function giveDrinks(i,data){
         }
     });
     //Add the send button
-    $('.giveDrink').append('<button class="send"></button>')
+    $('.giveDrink').append('<button class="send">Klaar</button>')
     //clickhandlers
     $('.up').click(function(){
         console.log(i)

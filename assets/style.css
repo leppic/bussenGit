@@ -256,6 +256,17 @@ button.send{
     height: 60px;
     width: 40vw;
     margin-left: calc(50vw - 20vw);
+    margin-top: 10px;
+    padding: 0;
+    display: inline-block;
+    border-radius: 22px;
+    border: 0px;
+    background-color: rgb(76, 102, 100);
+    box-shadow: 0px 0px 8px black;
+    color: white;
+    box-sizing: border-box;
+    font-size: 20pt;
+    font-family: 'Fjalla One', sans-serif;
 }
 div[player-id="1"]{background-color: #75B843;}
 div[player-id="2"]{background-color: #62C3D6;}

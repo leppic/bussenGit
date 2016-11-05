@@ -1,5 +1,11 @@
 //This script only checks for the start button. If pressed the information is send to the data base and if the room exists the player is added
 startButton()
+    //Change this value to false if the code is tested in it's totallity. 
+    //As it is now, true means that when round 5 starts and the player doesn't have any cards, it wil show his cards
+    //This is only relevant if you used skipStart() in the host
+    //The code also makes it so that if a player has a empty hand in round 5, it gets refilled. This isn't supossed to happen
+    production=true;
+
 //Convert the text in the roompart to uppercase, so there is a match in the database
 $('input[type=text]#room').keyup(function() {
     $(this).val($(this).val().toUpperCase());

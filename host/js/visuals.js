@@ -210,11 +210,36 @@ function nobodyDrinks(){
     var feed='Niemand drinkt';
     $('.feedback').append('<h3>'+feed+'</h3>')
     setTimeout(function(){
-        
+        $('.feedback').fadeOut(function(){
+            $('.feedback').empty();
+        })
     },2000)
 }
-function round5drinks(){
-    
+function round5drinks(totalDrinks){
+    var showAmount = 0;
+    $.each(totalDrinks, function(i,val){
+        if(val!=0&&val!=undefined&&val!=''){
+           var playerName = playerList[(i-1)]
+           var drnkAmount = ''
+           if(val==1){
+               drnkAmount = '1 slok'
+           }else{drnkAmount = val+' slokken'}
+            setTimeout(function(){
+                $('.round5drink').append('<h3>'+playerName+' moet '+drnkAmount+' drinken!</h3>')
+                $('.round5drink').fadeIn();
+                
+                var curAm = parseInt( $('div[player-id="'+i+'"] .drinks p').text() );
+                $('div[player-id="'+i+'"] .drinks p').text(curAm+parseInt(val));
+            },2000*showAmount);
+            showAmount +=1;
+        }
+    });
+    setTimeout(function(){
+        $('.round5drink').fadeOut(function(){
+            $(this).empty();
+        });
+        cleanupDatabase()
+    },2000*showAmount);
 }
 //The numbers as used as the SVG names arent completely correct. The SVG set is all numbers and starts at 1. Normal card sets have numbers and letters and start at 2
 function correctValueNumber(number){

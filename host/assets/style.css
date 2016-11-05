@@ -129,6 +129,7 @@ img.avatar {
     margin-left: 85px;
     position: absolute;
     top: 400px;
+    z-index: 10;
 }
 .feedback h3 {
     text-align: center;
@@ -136,6 +137,23 @@ img.avatar {
     font-size: 80pt;
     margin: 0;
     text-shadow: -3px 3px 20px #fff, 3px -4px 20px #fff;    
+}
+.round5drink {    
+    width: calc(100vw - 455px);
+    margin-left: 85px;
+    position: absolute;
+    top: 10px;
+    z-index: 10;
+}
+.round5drink h3 {
+    text-align: center;
+    font-size: 4vh;
+    color: white;
+    background-color: rgba(73, 97, 96, 0.79);
+    padding: 16px 0px;
+    margin: 2vh;
+    border-radius: 50px;
+    box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.56);
 }
 .cardStack{
     width: 125px;

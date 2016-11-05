@@ -243,9 +243,31 @@ function showFeedback5Drinks(playerDrinkChoices){
     console.log(playerDrinkChoices)
     if(playerDrinkChoices.length==0){
         //nothing
-        cleanupDatabase();
+        nobodyDrinks();
+        setTimeout(function(){
+            cleanupDatabase();
+        },2000)
     }else{
+        var totalDrinks = ['','','','','','','','','']
+        $.each(playerDrinkChoices, function(i,val){
+            //Each val could look something like this: 1_0|2_1|4_1
+            $.each(val.split('|'), function(j,jal){
+                //Each val could look something like this: 1_0
+                var jal0 = jal.split('_')[0]
+                var jal1 = jal.split('_')[1]
+                jal0 = jal0.replace(/\s+/g, '');
+                jal0 = parseInt(jal0)
+                jal1 = jal1.replace(/\s+/g, '');
+                jal1 = parseInt(jal1)
+                var ff = totalDrinks[jal0]
+                if(ff==undefined||ff==''){ff=0}
+                totalDrinks[jal0]=ff+jal1
+            })
+        })
+        //If one player gives out drinks, his own number will be ignored
+        //So the array might contain a undefined. No worries, just replace the undefined with a 0
         //Visuals
+        round5drinks(totalDrinks)
         //cleanupDatabase() will be called from visuals
     }
     
