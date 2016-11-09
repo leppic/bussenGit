@@ -1,3 +1,6 @@
+*:focus {
+    outline: none;
+}
 body{
     font-family: 'Fjalla One', sans-serif;    
     z-index: -3;
@@ -320,8 +323,106 @@ img.avatar {
     animation-duration: 3s;
     animation-iteration-count: infinite;
 }
-@keyframes drink {
-    0%   {background-image: url(drink/drink1.png);}
-    40%  {background-image: url(drink/drink2.png);}
-    70%  {background-image: url(drink/drink3.png);}
+.drinkingVisuals {
+    z-index: 300;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: 1.3s ease-in;
+    display: none;
+}
+.drinkingVisuals img {
+    transition: 0.4s ease-out;
+}
+.drinkingVisuals h2 {
+    transition: 0.6s ease-in;
+}
+img.obam1{
+    width: 50vw;
+    position: absolute;
+    bottom: 0;
+    left: -50vw;
+}
+img.obam2{
+    height: 50vh;
+    position: absolute;
+    top: -50vh;
+    left: calc(50vw - 280px);
+}
+img.obam3{
+    width: 50vw;
+    position: absolute;
+    bottom: 0;
+    right: -50vw;
+}
+.drink1{
+    color: white;
+    font-size: 5vw;
+    position: absolute;
+    transform: rotate(-10deg);
+    bottom: 170px;
+    left: 290px;
+    display: none;
+    text-shadow: 10px 11px #000;
+}
+.drink2 {
+    color: white;
+    font-size: 6vw;
+    position: absolute;
+    transform: rotate(10deg);
+    top: 69px;
+    left: 620px;
+    display: none;
+    text-shadow: 10px 11px #000;
+}
+.drink3 {
+    color: white;
+    font-size: 8vw;
+    position: absolute;
+    transform: rotate(5deg);
+    bottom: 130px;
+    right: 200px;
+    display: none;
+    text-shadow: 10px 11px #000;
+}
+.drink4 {
+    color: white;
+    font-size: 17vw;
+    position: absolute;
+    transform: rotate(-5deg);
+    top: 0px;
+    right: 200px;
+    display: none;
+    text-shadow: 10px 11px #000;
+}
+
+.soundMute {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0,0,0,0);
+    border: 0px;
+    background-size: contain;
+    top: 10px;
+    left:10px;
+    position: absolute;
+    background-image: url(mutef.png);
+}
+.musicMute {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0,0,0,0);
+    border: 0px;
+    background-size: contain;
+    top: 10px;
+    left:52px;
+    position: absolute;
+    background-image: url(mutemf.png);
+}
+.soundMute.muted {
+    background-image: url(mutet.png);
+}
+.musicMute.muted {
+    background-image: url(mutemt.png);
 }

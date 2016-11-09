@@ -42,11 +42,7 @@ function showFeedback(ans){
     }else {
         feed='Fout! DRINKEN!';
         setTimeout(function(){
-            $('.drinkContainer').show();
-            $('.feedback h3').remove();
-            setTimeout(function(){
-                $('.drinkContainer').hide();
-            },2000);
+            drinkDrink()
         },2000);
         
     }

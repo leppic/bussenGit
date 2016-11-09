@@ -6,6 +6,10 @@ $(document).ready(function(){
 //    Startbutton is activated
     clicksStart();
 //    Open a room with the generated number as name
+    //variables for muted music and sound
+    soundMute = false;
+    musicMute = false;
+    
     
 //    Temporary disabled for testing
     openRoom(roomNumber);
@@ -152,4 +156,24 @@ function skipStartFill(i){
             console.log(data)
         }
     });
+}
+function muteSound(){
+    if(soundMute){
+        soundMute=false;
+    }else {
+        soundMute=true
+    }
+    $('.soundMute').toggleClass('muted')
+    $('.sound').prop("muted", soundMute);
+}
+
+function muteMusic(){
+    if(musicMute){
+        musicMute=false;
+        
+    }else {
+        musicMute=true
+    }
+    $('.musicMute').toggleClass('muted')
+    $('.music').prop("muted", musicMute);
 }
