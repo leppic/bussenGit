@@ -1,3 +1,6 @@
+*:focus {
+    border: 0px;
+}
 body {
     margin: 0;
     padding: 0;
@@ -257,6 +260,42 @@ button.send{
     width: 40vw;
     margin-left: calc(50vw - 20vw);
     margin-top: 10px;
+    padding: 0;
+    display: inline-block;
+    border-radius: 22px;
+    border: 0px;
+    background-color: rgb(76, 102, 100);
+    box-shadow: 0px 0px 8px black;
+    color: white;
+    box-sizing: border-box;
+    font-size: 20pt;
+    font-family: 'Fjalla One', sans-serif;
+}
+.takeDrink {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(8, 21, 20, 0.71);
+    display: none;
+    position: absolute;
+    z-index: 50;
+    display: none;
+}
+.takeDrink h2 {
+    width: 100vw;
+    top: 0vh;
+    position: absolute;
+    text-align: center;
+    font-size: 40vw;
+    color: white;
+}
+span.drinkinH2{
+    font-size: 12vw;
+}
+button#takeDrink {
+    height: 60px;
+    width: 40vw;
+    margin-left: calc(50vw - 20vw);
+    margin-top: 81vw;
     padding: 0;
     display: inline-block;
     border-radius: 22px;

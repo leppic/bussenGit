@@ -85,7 +85,7 @@ function waitForPlayer(){
                     //Wait for four seconds to let visuals play out
                     setTimeout(function(){
                         resetChoice();
-                    }, 4000)
+                    }, 4800)
                 }else{
                     waitForPlayer()
                 }
@@ -93,12 +93,7 @@ function waitForPlayer(){
          })
     }, 1000);  
 }
-function addScore(ans){
-    if(ans==false){
-        var curAm = parseInt( $('.playerTurn .drinks p').text() );
-        $('.playerTurn .drinks p').text(curAm+round);
-    }
-}
+
 function resetChoice(){
     $.ajax({
             type: "POST",

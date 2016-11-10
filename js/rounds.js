@@ -2,6 +2,7 @@ function startRound(){
     //Check for turn and wait
     round=0;
     globCards='';
+    checkDrinks();
     waitForHost();
 }
 

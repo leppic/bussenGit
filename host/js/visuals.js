@@ -192,6 +192,9 @@ function showFeedback5(ans,i){
         }else {
            text = '<p>'+amountRight+' kaarten goed, '+text
         }
+        if(amountWrong>0){
+            addScore5(i, ansSplit[1])
+        }
     }
     playerEle.append('<div class="persFeedback" style="display:none">'+text+'</div>');
     $('.persFeedback').fadeIn();
@@ -221,6 +224,7 @@ function round5drinks(totalDrinks){
                drnkAmount = '1 slok'
            }else{drnkAmount = val+' slokken'}
             setTimeout(function(){
+                addScore5(i,val)
                 $('.round5drink').append('<h3>'+playerName+' moet '+drnkAmount+' drinken!</h3>')
                 $('.round5drink').fadeIn();
                 
