@@ -55,9 +55,10 @@ function choiceFeedback(correct) {
 function changeName(name) {
     $('header h2').text(name)
 }
-function changeAvatar() {
+function changeAvatar(i) {
     //Get propper ID from database
-    $('header img').attr('src', 'assets/avatars/av1.png')
+    $('header img').attr('src', 'assets/avatars/av'+i+'.png')
+    $('header').attr('player-id',i)
 }
 function r5HideOrShow(card,ans) {
     card = card.replace(/\s+/g, '')

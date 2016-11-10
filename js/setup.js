@@ -21,26 +21,51 @@ function startButton(){
 //        Check wether anything is empty
         if(roomNum==''||playerName==''){
 //            Alert if one of them is empty
-            alert('Fill everything in')
+            alert('Velden mogen natuurlijk niet leeg zijn')
         }else{
 //            Otherwise continue and post the information to the room
 //            There should be a different message if the room doesn't exist
 //            Use the PHP script enterRoom to enter
+            //First check if the playername is allready taken
             $.ajax({
                 type: "POST",
-                data: {room:roomNum,name:playerName},
-                url: "php/enterRoom.php",
+                data: {room:roomNum},
+                url: "php/checkPlayers.php",
                 success: function(data){
                     if(data=='fail'){
-                        alert('this room does not exist')
-                    }else{
-                        hideLogin();
-                        startRound();
-                        changeName(playerName);
-                        changeAvatar();
+                        alert('Deze kamer bestaat niet');
+                        return false;
                     }
+                    var splitData = data.split('|split|');
+                    $.each(splitData, function(i,val){
+                        if(val==playerName){
+                            alert('Er zit al iemand in deze kamer met die naam')
+                            return false;
+                        }
+                        if(i==(splitData.length-1)){
+                            enterRoom(i)
+                        }
+                    });
                 }
             });
+            
         }
     })
+}
+function enterRoom(i){
+    $.ajax({
+        type: "POST",
+        data: {room:roomNum,name:playerName},
+        url: "php/enterRoom.php",
+        success: function(data){
+            if(data=='fail'){
+                alert('Deze kamer bestaat niet')
+            }else{
+                hideLogin();
+                startRound();
+                changeName(playerName);
+                changeAvatar(i);
+            }
+        }
+    });
 }
