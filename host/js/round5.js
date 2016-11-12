@@ -17,8 +17,8 @@ function startRoundFive(){
     if(round5Message()){
         getFifteenCards()
     }
-    //TO DO:
-    //Update the players round to let the clients know round 5 has started (DONE)
+    //Hide the player cards minature. More excitement
+    $('.playerCards').fadeOut();
 }
 //This works :P
 function waitForPlayer5(IDarray){
@@ -159,9 +159,17 @@ function checkAnswers5(){
                     console.log(jalSplit)
                     console.log(playedCardNumber)
                     if(jalSplit==playedCardNumber){
-                        //Player is correct and may give a shot away (amount dependand on the round)
+                        //Player is correct and may give a shot away (amount dependent on the round)
                         amountToGive += round5Amount;
-                        cardsYoN = cardsYoN+'|'+jal+'_right'
+                        cardsYoN = cardsYoN+'|'+jal+'_right';
+                        //Remove the right card from the players minature
+                        var f = jal.replace('z','-');
+                        f = f.replace(/\s+/g, '')
+                        console.log("AANDACHT")
+                        console.log(i);
+                        console.log(f);
+                        
+                        $('div[player-id="'+i+'"] .playerCards div[card-id="'+f+'"]').remove();
                     }else{
                         //Player played a wrong card an has to drink himself!
                         amountToDrink += round5Amount;
@@ -296,6 +304,10 @@ function cleanupDatabase(){
                     }
                     if(round5Turn==14){
                         round5Amount=5
+                    }
+                    if(round5Turn==15){
+                        startRound6();
+                        return false;
                     }
                     flipFifteenCard(round5Turn)
 //                    console.log('last Cleaned up')

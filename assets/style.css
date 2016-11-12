@@ -307,12 +307,12 @@ button#takeDrink {
     font-size: 20pt;
     font-family: 'Fjalla One', sans-serif;
 }
-header[player-id="1"]{background-color: #75B843;}
-header[player-id="2"]{background-color: #62C3D6;}
-header[player-id="3"]{background-color: #FCC014;}
-header[player-id="4"]{background-color: #BD9BC9;}
-header[player-id="5"]{background-color: #e9473d;}
-header[player-id="6"]{background-color: #FEEB25;}
-header[player-id="7"]{background-color: #268138;}
-header[player-id="8"]{background-color: #3CA5DD;}
-header[player-id="9"]{background-color: #DD5B9D;}
+div[player-id="1"],header[player-id="1"]{background-color: #75B843;}
+div[player-id="2"],header[player-id="2"]{background-color: #62C3D6;}
+div[player-id="3"],header[player-id="3"]{background-color: #FCC014;}
+div[player-id="4"],header[player-id="4"]{background-color: #BD9BC9;}
+div[player-id="5"],header[player-id="5"]{background-color: #e9473d;}
+div[player-id="6"],header[player-id="6"]{background-color: #FEEB25;}
+div[player-id="7"],header[player-id="7"]{background-color: #268138;}
+div[player-id="8"],header[player-id="8"]{background-color: #3CA5DD;}
+div[player-id="9"],header[player-id="9"]{background-color: #DD5B9D;}

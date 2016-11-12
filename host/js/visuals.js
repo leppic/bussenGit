@@ -64,7 +64,7 @@ function flipCard(newCard){
     //Place a little version of the card inside the players avatar. It will be hidden and shown when the player gets his card
     //The numbers aren't correct to show, so they have to be converted
     var correctValue = correctValueNumber(newCard.split('-')[1]);
-    $('.playerTurn .playerCards').append('<div class="playerCardsItem"><img src="assets/mini/mini'+newCard.split('-')[0]+'.png"><p>'+correctValue+'</p></div>')
+    $('.playerTurn .playerCards').append('<div class="playerCardsItem" card-id="'+newCard+'"><img src="assets/mini/mini'+newCard.split('-')[0]+'.png"><p>'+correctValue+'</p></div>')
     //Update the transition so the flipping will be a bit faster
     $('.card').css({transition: '0.4s ease-in-out'});
     //Make the card flip (CSS)
@@ -240,6 +240,13 @@ function round5drinks(totalDrinks){
         });
         cleanupDatabase()
     },2000*showAmount);
+}
+function round6Visual(loserID){
+    for (var i = 0; i < playerAmount; i++) { 
+        $('.round6countdown').append('<div class="floatingPlayerCont pos'+(i+1)+'"><div class="floatingPlayer" player-id6="'+(i+1)+'"> <img src="../assets/avatars/av'+(i+1)+'.png" class="avatar6"> <h2>'+playerList[i]+'</h2></div></div>')
+    };
+    var loserName = playerList[loserID-1]; 
+    $('.instructions').append('<h3>'+loserName+' moet in de bus!</h3>')
 }
 //The numbers as used as the SVG names arent completely correct. The SVG set is all numbers and starts at 1. Normal card sets have numbers and letters and start at 2
 function correctValueNumber(number){

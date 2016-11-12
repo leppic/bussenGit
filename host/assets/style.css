@@ -313,6 +313,48 @@ img.avatar {
     margin: 10px 0px;
 }
 
+/*round 6*/
+.round6countdown{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.floatingPlayerCont{
+    position: absolute;
+    top: 100;
+    left: 100;
+}
+.floatingPlayer{
+    width: 11vw;
+    animation: countdownJumping 3s infinite;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+}
+.avatar6{
+    width: 10vw;
+    margin: 0.5vw;
+    border-radius: 50%;
+}
+.floatingPlayer h2 {
+    width: 11vw;
+    text-align: center;
+    font-size: 2vw;
+    margin: 0;
+}
+.floatingPlayerCont.pos1{left:27vw; top:28vh;}
+.floatingPlayerCont.pos2{left:51vw; top:34vh;}
+.floatingPlayerCont.pos3{left:39vw; top:71vh;}
+.floatingPlayerCont.pos4{left:71vw; top:57vh;}
+.floatingPlayerCont.pos5{left:66vw; top:20vh;}
+.floatingPlayerCont.pos6{left:19vw; top:62vh;}
+.floatingPlayerCont.pos7{left:44vw; top:8vh;}
+.floatingPlayerCont.pos8{left:57vw; top:66vh;}
+@keyframes countdownJumping {
+    0%   { margin-left: 0vw;transform: rotate(-3deg);}
+    50% { margin-left: 1vw;transform:rotate(3deg);}
+    100% { margin-left: 0vw;transform:rotate(-3deg);}
+}
+
 .drinkContainer {
     display: none;
     width: 100vw;
